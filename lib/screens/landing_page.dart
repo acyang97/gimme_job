@@ -38,7 +38,6 @@ class LandingPage extends StatelessWidget {
 
               if (streamSnapshot.connectionState == ConnectionState.active) {
                 final _user = streamSnapshot.data;
-                print(_user);
                 if (_user == null) {
                   return Authenticate();
                 } else {

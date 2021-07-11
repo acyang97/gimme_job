@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  String getCurrentUser() {
+    return _auth.currentUser!.uid;
+  }
+
   Future<bool> signIn(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -19,6 +23,7 @@ class AuthService {
           email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
+      print('email: $email');
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {

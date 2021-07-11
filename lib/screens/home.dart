@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gimme_job/models/job.dart';
+import 'package:gimme_job/screens/add_job.dart';
+import 'package:gimme_job/screens/job_list.dart';
 import 'package:gimme_job/services/auth_service.dart';
+import 'package:gimme_job/services/job_service.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,14 +19,8 @@ class _HomeState extends State<Home> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     // We probably can show the widget here
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    JobList(),
+    AddJob(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -31,14 +30,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     _widgetOptions = [
-      Text(
-        'Index 1: Business',
-        style: optionStyle,
-      ),
-      Text(
-        'Index 1: Business',
-        style: optionStyle,
-      ),
+      JobList(),
+      AddJob(),
       Text(
         'Index 2: School',
         style: optionStyle,
