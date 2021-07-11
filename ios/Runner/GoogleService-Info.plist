@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>213279297389-54iushn8nqtj9nkuv6vb1a96mdiqdkgr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.213279297389-54iushn8nqtj9nkuv6vb1a96mdiqdkgr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB_GyGf4IA7DhoiZvSgil_5eSaexCxrroE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>213279297389</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.gimmeJob</string>
+	<key>PROJECT_ID</key>
+	<string>gimme-job</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gimme-job.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:213279297389:ios:7c15004165ce60a8ea5464</string>
+</dict>
+</plist>

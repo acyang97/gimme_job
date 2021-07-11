@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "213279297389",
+    "project_id": "gimme-job",
+    "storage_bucket": "gimme-job.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213279297389:android:cbc04fb7571c5eaeea5464",
+        "android_client_info": {
+          "package_name": "com.chunyang.gimme_job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213279297389-dc75p8gklm26t783uh5bm8b9ge7mr28o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs4X4Y-X6o1ML7lrPrN-DMd7dwXX1Zbk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213279297389-dc75p8gklm26t783uh5bm8b9ge7mr28o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "213279297389-54iushn8nqtj9nkuv6vb1a96mdiqdkgr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gimmeJob"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
