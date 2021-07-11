@@ -3,14 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gimme_job/constants.dart';
 import 'package:gimme_job/screens/authenticate.dart';
-import 'package:gimme_job/services/auth_service.dart';
+import 'package:gimme_job/screens/home.dart';
 
 class LandingPage extends StatelessWidget {
   final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
-    final AuthService _auth = AuthService();
     return FutureBuilder(
       future: _firebaseApp,
       builder: (context, snapshot) {
@@ -43,20 +42,7 @@ class LandingPage extends StatelessWidget {
                 if (_user == null) {
                   return Authenticate();
                 } else {
-                  return Scaffold(
-                    appBar: AppBar(
-                      title: Text('Login already la'),
-                      actions: [
-                        ElevatedButton.icon(
-                          onPressed: () async {
-                            await _auth.signOut();
-                          },
-                          icon: Icon(Icons.person),
-                          label: Text('Logout'),
-                        ),
-                      ],
-                    ),
-                  );
+                  return Home();
                 }
               }
               // Checking the auth state - Loading
