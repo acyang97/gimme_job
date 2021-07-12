@@ -11,7 +11,7 @@ class JobTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
-        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 20.0),
+        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 6.0),
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,

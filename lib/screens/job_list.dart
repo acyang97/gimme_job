@@ -36,15 +36,17 @@ class _JobListState extends State<JobList> {
   }
 
   Widget _buildList(QuerySnapshot? snapshot) {
-    return ListView.builder(
-      itemCount: snapshot!.docs.length,
-      itemBuilder: (context, index) {
-        final doc = snapshot.docs[index];
-        print(doc["applicationStatus"]);
-        return JobTile(
-          job: Job.fromJson(doc.data() as Map<String, dynamic>),
-        );
-      },
+    return Expanded(
+      child: ListView.builder(
+        itemCount: snapshot!.docs.length,
+        itemBuilder: (context, index) {
+          final doc = snapshot.docs[index];
+          print(doc["applicationStatus"]);
+          return JobTile(
+            job: Job.fromJson(doc.data() as Map<String, dynamic>),
+          );
+        },
+      ),
     );
   }
 }
