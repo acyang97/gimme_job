@@ -38,4 +38,11 @@ class Job {
         'companyName': this.companyName,
         'applicationStatus': this.applicationStatus.index,
       };
+
+  String getApplicatioStatus(Job job) {
+    if (job.applicationStatus == ApplicationStatus.WaitingForInterview) {
+      return "Waiting for Interview";
+    }
+    return job.applicationStatus.toString().split('.').last;
+  }
 }

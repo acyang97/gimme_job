@@ -43,7 +43,9 @@ class _JobListState extends State<JobList> {
           final doc = snapshot.docs[index];
           print(doc["applicationStatus"]);
           return JobTile(
-            job: Job.fromJson(doc.data() as Map<String, dynamic>),
+            job: Job.fromJson(
+              doc.data() as Map<String, dynamic>,
+            ),
           );
         },
       ),
