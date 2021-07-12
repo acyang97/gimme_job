@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gimme_job/constants.dart';
+import 'package:gimme_job/utils/constants.dart';
 import 'package:gimme_job/services/auth_service.dart';
 import 'package:gimme_job/utils/loading.dart';
 
@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.purple[100],
+            backgroundColor: Colors.grey[100],
             appBar: AppBar(
               backgroundColor: Colors.purple[400],
               elevation: 0.0,
@@ -37,74 +37,124 @@ class _SignInState extends State<SignIn> {
                   onPressed: () {
                     widget.toggleView();
                   },
-                  icon: Icon(Icons.person),
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
                   label: Text(
-                    'Register',
+                    'Sign Up',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 )
               ],
             ),
-            body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(hintText: 'Email'),
-                      validator: (val) =>
-                          val!.isEmpty ? 'Enter an email' : null,
-                      onChanged: (val) {
-                        setState(() => email = val);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(hintText: 'Password'),
-                      validator: (val) =>
-                          val!.length == 0 ? 'Enter a password' : null,
-                      obscureText: true,
-                      onChanged: (val) {
-                        setState(() => password = val);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.pink[400],
-                      ),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic result = await _auth.signIn(email, password);
-                          print('result: $result');
-                          if (result == false) {
-                            setState(() {
-                              error =
-                                  'Could Not Sign In With Those Credentials';
-                              loading = false;
-                            });
-                          }
-                        }
-                      },
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(height: 12.0),
-                    Text(
-                      error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    ),
-                  ],
+            body: Column(
+              children: [
+                SizedBox(height: 50.0),
+                Image.asset(
+                  'assets/gimme_job_logo.png',
+                  height: 300.0,
                 ),
-              ),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 50.0,
+                    vertical: 20.0,
+                  ),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                            hintText: 'Email',
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(
+                                top: 1.0,
+                              ),
+                              child: Icon(
+                                Icons.email,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                          ),
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter an email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                        ),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                            hintText: 'Password',
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(
+                                top: 1.0,
+                              ),
+                              child: Icon(
+                                Icons.password_rounded,
+                                color: Colors.grey[400],
+                              ),
+                            ),
+                          ),
+                          validator: (val) =>
+                              val!.length == 0 ? 'Enter a password' : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                        ),
+                        SizedBox(height: 50.0),
+                        SizedBox(
+                          height: 50.0,
+                          width: 180.0,
+                          child: ElevatedButton.icon(
+                            icon: Icon(Icons.login),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.pink[400],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  loading = true;
+                                });
+                                dynamic result =
+                                    await _auth.signIn(email, password);
+                                print('result: $result');
+                                if (result == false) {
+                                  setState(() {
+                                    error =
+                                        'Could Not Sign In With Those Credentials';
+                                    loading = false;
+                                  });
+                                }
+                              }
+                            },
+                            label: Text(
+                              'Sign In',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 12.0),
+                        Text(
+                          error,
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
   }

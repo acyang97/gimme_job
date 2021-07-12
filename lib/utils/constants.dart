@@ -28,3 +28,6 @@ const textInputDecoration = InputDecoration(
     ),
   ),
 );
+
+const primaryColor = Color(0xFF6F355A5);
+const secondaryColor = Color(0xFFF1E6FF);

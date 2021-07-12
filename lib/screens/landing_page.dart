@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gimme_job/constants.dart';
+import 'package:gimme_job/utils/constants.dart';
 import 'package:gimme_job/screens/authenticate.dart';
 import 'package:gimme_job/screens/home.dart';
 

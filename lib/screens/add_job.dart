@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gimme_job/constants.dart';
+import 'package:gimme_job/utils/constants.dart';
 import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/services/auth_service.dart';
 import 'package:gimme_job/services/job_service.dart';

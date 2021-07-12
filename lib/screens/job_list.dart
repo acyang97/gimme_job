@@ -47,7 +47,6 @@ class _JobListState extends State<JobList> {
             itemCount: snapshot!.docs.length,
             itemBuilder: (context, index) {
               final doc = snapshot.docs[index];
-              print(doc["applicationStatus"]);
               return Dismissible(
                 key: UniqueKey(),
                 background: Container(
@@ -78,6 +77,12 @@ class _JobListState extends State<JobList> {
                             "Are you sure you wish to delete this application?"),
                         actions: <Widget>[
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.pink[400],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
                             onPressed: () {
                               setState(() {
                                 loading = true;
@@ -97,6 +102,12 @@ class _JobListState extends State<JobList> {
                             ),
                           ),
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.grey[400],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
                             onPressed: () => Navigator.of(context).pop(false),
                             child: const Text(
                               "CANCEL",
