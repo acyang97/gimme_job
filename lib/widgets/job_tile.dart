@@ -15,7 +15,7 @@ class JobTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 40.0,
-            backgroundColor: Colors.brown,
+            backgroundColor: Colors.blue,
           ),
           // TODO: Implement feature to edit
           trailing: Icon(Icons.more_vert),
