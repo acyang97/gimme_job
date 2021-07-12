@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/services/auth_service.dart';
+import 'package:gimme_job/widgets/job_tile.dart';
 
 class JobList extends StatefulWidget {
   const JobList({Key? key}) : super(key: key);
@@ -38,10 +40,9 @@ class _JobListState extends State<JobList> {
       itemCount: snapshot!.docs.length,
       itemBuilder: (context, index) {
         final doc = snapshot.docs[index];
-        return ListTile(
-          title: Text(
-            doc["positionName"],
-          ),
+        print(doc["applicationStatus"]);
+        return JobTile(
+          job: Job.fromJson(doc.data() as Map<String, dynamic>),
         );
       },
     );

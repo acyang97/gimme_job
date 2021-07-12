@@ -25,4 +25,17 @@ class Job {
     required this.companyName,
     required this.applicationStatus,
   });
+
+  Job.fromJson(Map<String, dynamic> json)
+      : uid = json['uid'],
+        positionName = json['positionName'],
+        companyName = json['companyName'],
+        applicationStatus = ApplicationStatus.values[json['applicationStatus']];
+
+  Map<String, dynamic> toJson() => {
+        'uid': this.uid,
+        'positionName': this.positionName,
+        'companyName': this.companyName,
+        'applicationStatus': this.applicationStatus.index,
+      };
 }

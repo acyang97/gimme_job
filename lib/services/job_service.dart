@@ -15,12 +15,7 @@ class JobService {
 
   Future<bool> createNewJob(Job job) async {
     try {
-      await jobsCollection.add({
-        "uid": job.uid,
-        "positionName": job.positionName,
-        "companyName": job.companyName,
-        "applicationStatus": job.applicationStatus.toString(),
-      });
+      await jobsCollection.add(job.toJson());
       return true;
     } catch (e) {
       print('createNewJob error');

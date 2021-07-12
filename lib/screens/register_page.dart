@@ -85,13 +85,10 @@ class _RegisterState extends State<Register> {
                           dynamic result =
                               await _auth.register(email, password);
                           if (!result) {
-                            setState(
-                              () {
-                                error =
-                                    'Please enter a valid email and password';
-                                loading = false;
-                              },
-                            );
+                            setState(() {
+                              error = 'Please enter a valid email and password';
+                              loading = false;
+                            });
                           }
                         }
                       },

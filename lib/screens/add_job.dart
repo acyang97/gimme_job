@@ -19,7 +19,8 @@ class _AddJobState extends State<AddJob> {
 
   String _companyName = '';
   String _positionName = '';
-  String _applicationStatus = ApplicationStatus.Applied.toString();
+  // String _applicationStatus = ApplicationStatus.Applied.toString();
+  int _applicationStatus = 0;
   String error = '';
 
   @override
@@ -44,20 +45,20 @@ class _AddJobState extends State<AddJob> {
             },
           ),
           DropdownButtonFormField(
-            value: _applicationStatus,
+            value: _applicationStatus.toString(),
             icon: const Icon(Icons.arrow_downward),
             iconSize: 24,
             elevation: 16,
             style: const TextStyle(color: Colors.deepPurple),
             onChanged: (String? newValue) {
               setState(() {
-                _applicationStatus = newValue!;
+                _applicationStatus = int.parse(newValue!);
               });
             },
             items: ApplicationStatus.values.map<DropdownMenuItem<String>>(
               (ApplicationStatus status) {
                 return DropdownMenuItem<String>(
-                  value: status.toString(),
+                  value: ApplicationStatus.values.indexOf(status).toString(),
                   child: Text(status.toString().split('.')[1]),
                 );
               },
@@ -75,7 +76,8 @@ class _AddJobState extends State<AddJob> {
                 // do something to insert the data into the database
                 Job job = new Job(
                   uid: _authService.getCurrentUser(),
-                  applicationStatus: ApplicationStatus.Applied,
+                  applicationStatus:
+                      ApplicationStatus.values[_applicationStatus],
                   positionName: this._positionName,
                   companyName: this._companyName,
                 );
@@ -96,7 +98,7 @@ class _AddJobState extends State<AddJob> {
               }
             },
             child: Text(
-              'Sign Up',
+              'Add Job',
               style: TextStyle(color: Colors.white),
             ),
           ),
