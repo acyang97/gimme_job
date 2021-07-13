@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
         : Scaffold(
             backgroundColor: Colors.grey[100],
             appBar: AppBar(
-              backgroundColor: Colors.purple[400],
+              backgroundColor: Colors.red[400],
               elevation: 0.0,
               title: Text('Sign Up'),
               actions: <Widget>[
@@ -113,7 +113,7 @@ class _RegisterState extends State<Register> {
                           child: ElevatedButton.icon(
                             icon: Icon(Icons.app_registration_rounded),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.pink[400],
+                              primary: Colors.red[400],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50.0),
                               ),

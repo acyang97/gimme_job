@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/screens/add_job.dart';
 import 'package:gimme_job/screens/job_list.dart';
 import 'package:gimme_job/services/auth_service.dart';
-import 'package:gimme_job/services/job_service.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

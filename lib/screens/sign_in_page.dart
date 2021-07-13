@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             backgroundColor: Colors.grey[100],
             appBar: AppBar(
-              backgroundColor: Colors.purple[400],
+              backgroundColor: Colors.red[400],
               elevation: 0.0,
               title: Text('Sign In'),
               actions: <Widget>[
@@ -114,7 +114,7 @@ class _SignInState extends State<SignIn> {
                           child: ElevatedButton.icon(
                             icon: Icon(Icons.login),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.pink[400],
+                              primary: Colors.red[400],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50.0),
                               ),
