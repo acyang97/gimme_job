@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gimme_job/models/job.dart';
+import 'package:intl/intl.dart';
 
 class JobService {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -16,6 +17,7 @@ class JobService {
   Future<bool> createNewJob(Job job) async {
     try {
       await jobsCollection.add(job.toJson());
+      print(job);
       return true;
     } catch (e) {
       print('createNewJob error');
@@ -46,12 +48,12 @@ class JobService {
       return snapshot.docs.map(
         (d) {
           return Job(
-            uid: d.get("uid") ?? "",
-            positionName: d.get("positionName") ?? "",
-            companyName: d.get("companyName") ?? "",
-            applicationStatus:
-                d.get("applicationStatus") ?? ApplicationStatus.Applied,
-          );
+              uid: d.get("uid") ?? "",
+              positionName: d.get("positionName") ?? "",
+              companyName: d.get("companyName") ?? "",
+              applicationStatus:
+                  d.get("applicationStatus") ?? ApplicationStatus.Applied,
+              nextKeyDate: d.get("nextKeyDate"));
         },
       ).toList();
     } catch (e) {
@@ -62,5 +64,9 @@ class JobService {
 
   Stream<List<Job>?> get jobs {
     return jobsCollection.snapshots().map(_jobListFromSnapshot);
+  }
+
+  String formatNextKeyDate(Job job) {
+    return DateFormat("yyyy-MM-dd").format(job.nextKeyDate);
   }
 }

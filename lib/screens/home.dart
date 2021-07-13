@@ -12,16 +12,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  // static const TextStyle optionStyle =
+  // TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     // We probably can show the widget here
     JobList(),
     AddJob(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
   ];
 
   @override
@@ -29,10 +25,6 @@ class _HomeState extends State<Home> {
     _widgetOptions = [
       JobList(),
       AddJob(),
-      Text(
-        'Index 2: School',
-        style: optionStyle,
-      ),
     ];
     super.initState();
   }
@@ -48,14 +40,28 @@ class _HomeState extends State<Home> {
     final AuthService _auth = AuthService();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hire Me Pls'),
+        backgroundColor: Colors.red[400],
+        title: const Text(
+          'Gimme Job',
+        ),
         actions: <Widget>[
           ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.red[400],
+            ),
             onPressed: () async {
               await _auth.signOut();
             },
-            icon: Icon(Icons.person),
-            label: Text('Logout'),
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -72,13 +78,9 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.add),
             label: 'Add Application',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search Job',
-          ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.red[400],
         onTap: _onItemTapped,
       ),
     );

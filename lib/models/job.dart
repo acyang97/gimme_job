@@ -18,25 +18,30 @@ class Job {
   final String positionName;
   final String companyName;
   final ApplicationStatus applicationStatus;
+  final DateTime nextKeyDate;
 
   Job({
     required this.uid,
     required this.positionName,
     required this.companyName,
     required this.applicationStatus,
+    required this.nextKeyDate,
   });
 
   Job.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
         positionName = json['positionName'],
         companyName = json['companyName'],
-        applicationStatus = ApplicationStatus.values[json['applicationStatus']];
+        applicationStatus = ApplicationStatus.values[json['applicationStatus']],
+        nextKeyDate = json['nextKeyDate'].toDate();
+  // nextKeyDate = DateTime.parse(json['nextKeyDate']);
 
   Map<String, dynamic> toJson() => {
         'uid': this.uid,
         'positionName': this.positionName,
         'companyName': this.companyName,
         'applicationStatus': this.applicationStatus.index,
+        'nextKeyDate': this.nextKeyDate,
       };
 
   String getApplicatioStatus(Job job) {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gimme_job/models/job.dart';
+import 'package:gimme_job/services/job_service.dart';
 
 class JobTile extends StatelessWidget {
   final Job job;
+  final JobService _jobService = new JobService();
 
   JobTile({required this.job});
 
@@ -37,6 +39,9 @@ class JobTile extends StatelessWidget {
                 ),
                 Text(
                   'Status: ${job.getApplicatioStatus(job)}',
+                ),
+                Text(
+                  'Next Key Date: ${_jobService.formatNextKeyDate(job)}',
                 ),
               ],
             ),

@@ -5,7 +5,6 @@ import 'package:gimme_job/utils/constants.dart';
 import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/services/auth_service.dart';
 import 'package:gimme_job/services/job_service.dart';
-import 'package:gimme_job/widgets/date_picker.dart';
 
 class AddJob extends StatefulWidget {
   const AddJob({Key? key}) : super(key: key);
@@ -133,6 +132,7 @@ class _AddJobState extends State<AddJob> {
               vertical: 10.0,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(bottom: 3.0, left: 3.0),
@@ -158,8 +158,9 @@ class _AddJobState extends State<AddJob> {
                   onSaved: (date) => setState(() {
                     selectedDate = date;
                   }),
-                  decoration:
-                      textInputDecoration.copyWith(hintText: 'Deadline'),
+                  decoration: textInputDecoration.copyWith(
+                    hintText: 'Next Key Date',
+                  ),
                 ),
               ],
             ),
@@ -179,13 +180,15 @@ class _AddJobState extends State<AddJob> {
                       ApplicationStatus.values[_applicationStatus],
                   positionName: this._positionName,
                   companyName: this._companyName,
+                  nextKeyDate: this.selectedDate!,
                 );
-                bool result =
-                    await _jobService.createNewJob(job).whenComplete(() {
-                  setState(() {
-                    loading = false;
-                  });
-                });
+                bool result = await _jobService.createNewJob(job).whenComplete(
+                  () {
+                    setState(() {
+                      loading = false;
+                    });
+                  },
+                );
                 if (!result) {
                   setState(
                     () {
@@ -198,7 +201,9 @@ class _AddJobState extends State<AddJob> {
             },
             child: Text(
               'Add Job',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
           SizedBox(height: 12.0),
