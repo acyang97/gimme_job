@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gimme_job/screens/edit_job.dart';
 import 'package:gimme_job/screens/landing_page.dart';
+import 'package:gimme_job/utils/routes.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,10 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: LandingPage(),
-      initialRoute: '/',
+      initialRoute: Routes.HOME,
       routes: {
-        '/': (context) => LandingPage(),
+        Routes.HOME: (context) => LandingPage(),
+        Routes.EDIT_JOB: (context) => EditJobPage(),
       },
     );
   }

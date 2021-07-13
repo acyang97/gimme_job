@@ -20,7 +20,14 @@ class JobTile extends StatelessWidget {
             backgroundColor: Colors.blue,
           ),
           // TODO: Implement feature to edit
-          trailing: Icon(Icons.more_vert),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.more_vert,
+            ),
+            onPressed: () {
+              // navigate to the
+            },
+          ),
           title: Padding(
             padding: EdgeInsets.only(
               top: 5.0,
