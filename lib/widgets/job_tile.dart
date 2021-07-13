@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/services/job_service.dart';
+import 'package:gimme_job/utils/job_argument.dart';
+import 'package:gimme_job/utils/routes.dart';
 
 class JobTile extends StatelessWidget {
   final Job job;
@@ -25,7 +27,11 @@ class JobTile extends StatelessWidget {
               Icons.more_vert,
             ),
             onPressed: () {
-              // navigate to the
+              Navigator.pushNamed(
+                context,
+                Routes.EDIT_JOB,
+                arguments: JobArgument(job: job),
+              );
             },
           ),
           title: Padding(
