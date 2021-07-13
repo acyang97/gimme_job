@@ -23,8 +23,6 @@ class _JobListState extends State<JobList> {
 
   @override
   Widget build(BuildContext context) {
-    print('building');
-    print('$_orderBy');
     return Column(
       children: [
         StreamBuilder<QuerySnapshot>(
