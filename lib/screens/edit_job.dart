@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gimme_job/dto/update_job_dto.dart';
 import 'package:gimme_job/services/auth_service.dart';
 import 'package:gimme_job/services/job_service.dart';
 import 'package:gimme_job/utils/job_argument.dart';
@@ -15,26 +16,28 @@ class EditJobPage extends StatefulWidget {
 class _EditJobPageState extends State<EditJobPage> {
   final JobService _jobService = JobService();
   final AuthService _authService = AuthService();
-  bool loading = false;
   final _editKey = new GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.onUserInteraction;
-  String _companyName = '';
-  String _positionName = '';
-  // String _applicationStatus = ApplicationStatus.Applied.toString();
+  Job? jobToBeEdited;
+  bool loading = false;
   int _applicationStatus = 0;
   String error = '';
-
-  DateTime? selectedDate = DateTime.now();
+  UpdateJobDto updateJobDto = new UpdateJobDto(
+    positionName: '',
+    companyName: '',
+    applicationStatus: 0,
+    nextKeyDate: DateTime.now(),
+  );
 
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as JobArgument;
-    _companyName = args.job.companyName;
-    print('$_companyName');
-    _positionName = args.job.positionName;
-    print('$_positionName');
-    _applicationStatus = args.job.applicationStatus.index;
-    selectedDate = args.job.nextKeyDate;
+
+    jobToBeEdited = args.job;
+    updateJobDto.companyName = args.job.companyName;
+    updateJobDto.positionName = args.job.positionName;
+    updateJobDto.applicationStatus = args.job.applicationStatus.index;
+    updateJobDto.nextKeyDate = args.job.nextKeyDate;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[400],
@@ -80,13 +83,13 @@ class _EditJobPageState extends State<EditJobPage> {
                     child: Text('Company Name'),
                   ),
                   TextFormField(
-                    initialValue: _companyName,
+                    initialValue: args.job.companyName,
                     decoration:
                         textInputDecoration.copyWith(hintText: 'Company Name'),
                     validator: (val) =>
                         val!.isEmpty ? 'Enter the company name' : null,
                     onChanged: (val) {
-                      setState(() => _companyName = val);
+                      this.updateJobDto.companyName = val;
                     },
                   ),
                 ],
@@ -105,13 +108,13 @@ class _EditJobPageState extends State<EditJobPage> {
                     child: Text('Position Name'),
                   ),
                   TextFormField(
-                    initialValue: _positionName,
+                    initialValue: args.job.positionName,
                     decoration:
                         textInputDecoration.copyWith(hintText: 'Position Name'),
                     validator: (val) =>
                         val!.isEmpty ? 'Enter the position name' : null,
                     onChanged: (val) {
-                      setState(() => _positionName = val);
+                      this.updateJobDto.positionName = val;
                     },
                   ),
                 ],
@@ -138,9 +141,8 @@ class _EditJobPageState extends State<EditJobPage> {
                     elevation: 16,
                     style: const TextStyle(color: Colors.deepPurple),
                     onChanged: (String? newValue) {
-                      setState(() {
-                        _applicationStatus = int.parse(newValue!);
-                      });
+                      this.updateJobDto.applicationStatus =
+                          int.parse(newValue!);
                     },
                     items:
                         ApplicationStatus.values.map<DropdownMenuItem<String>>(
@@ -170,7 +172,7 @@ class _EditJobPageState extends State<EditJobPage> {
                     child: Text('Next key date'),
                   ),
                   DateTimeField(
-                    initialValue: selectedDate,
+                    initialValue: args.job.nextKeyDate,
                     format: DateFormat("yyyy-MM-dd"),
                     onShowPicker: (context, currentValue) async {
                       final date = await showDatePicker(
@@ -183,12 +185,8 @@ class _EditJobPageState extends State<EditJobPage> {
                     },
                     autovalidateMode: autoValidateMode,
                     validator: (date) => date == null ? 'Invalid date' : null,
-                    onChanged: (date) => setState(() {
-                      selectedDate = date;
-                    }),
-                    onSaved: (date) => setState(() {
-                      selectedDate = date;
-                    }),
+                    onChanged: (date) => this.updateJobDto.nextKeyDate = date!,
+                    onSaved: (date) => this.updateJobDto.nextKeyDate = date!,
                     decoration: textInputDecoration.copyWith(
                       hintText: 'Next Key Date',
                     ),
@@ -202,19 +200,13 @@ class _EditJobPageState extends State<EditJobPage> {
               ),
               onPressed: () async {
                 if (_editKey.currentState!.validate()) {
-                  setState(() {
-                    loading = true;
-                  });
-                  Job job = new Job(
-                    uid: _authService.getCurrentUser(),
-                    applicationStatus:
-                        ApplicationStatus.values[_applicationStatus],
-                    positionName: this._positionName,
-                    companyName: this._companyName,
-                    nextKeyDate: this.selectedDate!,
-                  );
-                  bool result =
-                      await _jobService.createNewJob(job).whenComplete(
+                  this.loading = true;
+                  bool result = await _jobService
+                      .updateJobTest(
+                    this.jobToBeEdited!,
+                    this.updateJobDto,
+                  )
+                      .whenComplete(
                     () {
                       setState(() {
                         loading = false;
