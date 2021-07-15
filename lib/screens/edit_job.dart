@@ -233,7 +233,10 @@ class _EditJobPageState extends State<EditJobPage> {
             SizedBox(height: 12.0),
             Text(
               error,
-              style: TextStyle(color: Colors.red, fontSize: 14.0),
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 14.0,
+              ),
             ),
           ],
         ),
