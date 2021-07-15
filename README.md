@@ -1,9 +1,3 @@
-# gimme_job
+# Gimme Job
 
-A new Flutter project.
-
-## Getting Started
-
-- Edit application
-  - create the page to do so
-- Settings -> Configure the user allow him to add details
+Created small flutter project I created in a week just to explore a little bit more about mobile development. Also my first time utilizing firebase for authentication and database.
