@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gimme_job/models/job.dart';
 import 'package:gimme_job/services/job_service.dart';
+import 'package:gimme_job/utils/color_application_status.dart';
 import 'package:gimme_job/utils/job_argument.dart';
 import 'package:gimme_job/utils/routes.dart';
 
@@ -19,9 +20,10 @@ class JobTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 40.0,
-            backgroundColor: Colors.blue,
+            backgroundColor: ColorApplicationStatus.getColor(
+              job.applicationStatus,
+            ),
           ),
-          // TODO: Implement feature to edit
           trailing: IconButton(
             icon: Icon(
               Icons.more_vert,
